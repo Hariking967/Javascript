@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    <p>Rock Paper Scissors</p>
+    <button onclick="game('rock');">Rock</button>
+    <button onclick="game('paper');">Paper</button>
+    <button onclick="game('scissors');">Scissors</button>
+
+
+    <script>
+        function cpumove(seed)
+        {
+            if (seed<1/3)
+            {
+                return 'rock';
+            }
+            else if(seed<2/3)
+            {
+                return 'paper';
+            }
+            else
+            {
+                return 'scissors';
+            }
+        }
+        
+        function game(user)
+        {
+            let seed = Math.random();
+            let cpu = cpumove(seed);
+            if (cpu == user)
+            {
+                alert('TIE');
+            }
+            else if ((user == 'rock' && cpu == 'scissors') || (user == 'paper' && cpu == 'rock') || (user == 'scissors' && cpu == 'paper'))
+            {
+                alert('YOU WIN');
+            }
+            else
+            {
+                alert('YOU LOSE');
+            }
+        }
+
+    </script>
+</body>
+</html>

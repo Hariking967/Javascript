@@ -1,0 +1,56 @@
+body
+{
+    background-color: rgb(203, 233, 255);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: xx-large;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+.header-box {
+    background-color: rgb(120, 199, 255); /* Light gray background */
+    text-align: center;        /* Center the text */
+    padding: 20px;             /* Add some padding */
+    font-size: 24px;           /* Increase font size */
+    font-weight: bold;         /* Make the text bold */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Bottom shadow */
+  }
+
+.positioning
+{
+    margin-top: 50px;
+    display: grid;
+    place-items: center;
+}
+
+.outline
+{
+    background-color: rgb(118, 135, 147);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+}
+
+.outline input
+{
+    font-size: x-large;
+    width: 300px;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+}
+
+.outline button
+{
+    border: none;
+    border-radius: 10px;
+    font-size: x-large;
+    margin-top: 20px;
+    padding: 10px 20px;
+    transition: background-color 0.2s;
+}

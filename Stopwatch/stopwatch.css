@@ -1,0 +1,60 @@
+body
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#SwH
+{
+    font-family: monospace;
+    font-size: 50px;
+    text-align: center;
+}
+
+#SWdiv
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: solid 5px black;
+    border-radius: 10px;
+    width: 500px;
+    background: linear-gradient(lightpink, orange);
+}
+
+#timer
+{
+    font-family: monospace;
+    font-size: 50px;
+}
+
+button
+{
+    font-size: 20px;
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    margin-right: 7px;
+    margin-left: 7px;
+}
+
+#start
+{
+    background-color: rgb(0, 186, 0);
+    color: white;
+}
+
+#stop
+{
+    background-color: rgb(255, 61, 61);
+    color: white;
+}
+
+#reset
+{
+    background-color: rgb(70, 192, 233);
+    color: white;
+}
