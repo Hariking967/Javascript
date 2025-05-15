@@ -24,49 +24,48 @@ function getWeather()
     }).catch(error => {
         alert('Error fetching current weather data. Please try again.');
     });
-
+}
     function displayWeather(data)
     {
-        const tempDivInfo = document.querySelector('.temp-div');
-        const weatherInfoDiv = document.querySelector('.weather-info');
-        const weatherIcon = document.querySelector('.weather-icon');
-        const hourlyForecastDiv = document.querySelector('.hourly-forecast');
+        const tempDivInfo = document.querySelector('.tempDivInfo');
+        const weatherInfoDiv = document.querySelector('.weatherInfoDiv');
+        const weatherIcon = document.querySelector('.weatherIcon');
+        const hourlyForecastDiv = document.querySelector('.hourlyForecastDiv');
+        // Clear previous content
+        weatherInfoDiv.innerHTML = '';
+        hourlyForecastDiv.innerHTML = '';
+        tempDivInfo.innerHTML = '';
+        if (data.cod === '404')
+        {
+            weatherInfoDiv.innerHTML = `<p>${data.message}</p>`;
+        }
+        else {
+            const cityName = data.name;
+            const temperature = Math.round(data.main.temp - 273.15); // Convert to Celsius
+            const description = data.weather[0].description;
+            const iconCode = data.weather[0].icon;
+            const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@4x.png`;
+
+            const temperatureHTML = `
+                <p>${temperature}°C</p>
+            `;
+
+            const weatherHtml = `
+                <p>${cityName}</p>
+                <p>${description}</p>
+            `;
+
+            tempDivInfo.innerHTML = temperatureHTML;
+            weatherInfoDiv.innerHTML = weatherHtml;
+            weatherIcon.src = iconUrl;
+            weatherIcon.alt = description;
+
+            showImage();
+        }
     }
-    // Clear previous content
-    weatherInfoDiv.innerHTML = '';
-    hourlyForecastDiv.innerHTML = '';
-    tempDivInfo.innerHTML = '';
-    if (data.cod === '404')
-    {
-        weatherInfoDiv.innerHTML = `<p>${data.message}</p>`;
-    }
-    else {
-        const cityName = data.name;
-        const temperature = Math.round(data.main.temp - 273.15); // Convert to Celsius
-        const description = data.weather[0].description;
-        const iconCode = data.weather[0].icon;
-        const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@4x.png`;
-
-        const temperatureHTML = `
-            <p>${temperature}°C</p>
-        `;
-
-        const weatherHtml = `
-            <p>${cityName}</p>
-            <p>${description}</p>
-        `;
-
-        tempDivInfo.innerHTML = temperatureHTML;
-        weatherInfoDiv.innerHTML = weatherHtml;
-        weatherIcon.src = iconUrl;
-        weatherIcon.alt = description;
-
-        showImage();
-    }
-}
 
 function displayHourlyForecast(hourlyData) {
-    const hourlyForecastDiv = document.querySelector('.hourly-forecast');
+    const hourlyForecastDiv = document.querySelector('.hourlyForecastDiv');
 
     const next24Hours = hourlyData.slice(0, 8); // Display the next 24 hours (3-hour intervals)
 
@@ -89,7 +88,8 @@ function displayHourlyForecast(hourlyData) {
     });
 }
 
-function showImage() {
-    const weatherIcon = document.querySelector('.weather-icon');
-    weatherIcon.style.display = 'block'; // Make the image visible once it's loaded
+function showImage()
+{
+    const weatherIcon = document.querySelector('.weatherIcon');
+    weatherIcon.style.display = 'block';
 }
