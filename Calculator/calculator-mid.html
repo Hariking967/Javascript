@@ -5,51 +5,132 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Local Calculator</title>
     <style>
-        p
-        {
-            font-family: Arial;
-        }
-        .row
-        {
-            display: grid;
-            width: 250px;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-        }
+        body {
+  background: #222;
+  color: #eee;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  user-select: none;
+}
+p {
+  margin: 0 0 10px 0;
+  font-weight: 600;
+  font-size: 1.2rem;
+  letter-spacing: 0.06em;
+  text-align: center;
+  min-width: 250px;
+  padding: 6px 12px;
+  background: #333;
+  border-radius: 6px;
+  box-shadow: inset 1px 1px 5px #0008;
+}
+.js-calculation {
+  min-height: 28px;
+  font-size: 1.5rem;
+  background: #0008;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  padding: 6px 12px;
+  text-align: right;
+  letter-spacing: 0.06em;
+  color: #8ff;
+  font-weight: 700;
+  font-family: monospace;
+  user-select: text;
+  min-width: 250px;
+}
+.row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  width: 350px;
+  margin-bottom: 12px;
+}
+button {
+
+  background: linear-gradient(145deg, #3a3a3a, #1c1c1c);
+  border: none;
+  border-radius: 8px;
+  color: #d0d0d0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow:
+    2px 2px 5px #0008,
+    inset 1px 1px 2px #4a4a4a;
+  transition: all 0.15s ease;
+  user-select: none;
+  padding: 16px 0;
+  letter-spacing: 0.02em;
+}
+button:hover {
+  background: linear-gradient(145deg, #5a5a5a, #2e2e2e);
+  color: #aaffff;
+  box-shadow:
+    3px 3px 6px #00ffffcc,
+    inset 1px 1px 3px #6affff;
+}
+button:active {
+  box-shadow:
+    inset 2px 2px 4px #00cccc,
+    inset -2px -2px 6px #00ffff;
+  color: #66ffff;
+  background: #0a0a0a;
+}
+button:last-of-type {
+  background: #006666;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-top: 8px;
+  box-shadow: 2px 2px 10px #004d4d;
+  transition: background-color 0.2s ease;
+}
+button:last-of-type:hover {
+  background: #00cccc;
+  box-shadow: 0 0 10px #00ffffcc;
+  color: #004d4d;
+}
+
     </style>
 </head>
 <body>
     <p>Calculator:</p>
     <p class="js-calculation"></p>
     <div class="row">
-        <button onclick="calc(1);";>1</button>
-        <button onclick="calc(2);";>2</button>
-        <button onclick="calc(3);";>3</button>
-        <button onclick="calc('+');";>+</button>
+        <button onclick="calc(1);">1</button>
+        <button onclick="calc(2);">2</button>
+        <button onclick="calc(3);">3</button>
+        <button onclick="calc('+');">+</button>
     </div>
 
     <div class="row">
-        <button onclick="calc(4); ";>4</button>
-        <button onclick="calc(5); ";>5</button>
-        <button onclick="calc(6); ";>6</button>
-        <button onclick="calc('-'); ";>-</button>
+        <button onclick="calc(4);">4</button>
+        <button onclick="calc(5);">5</button>
+        <button onclick="calc(6);">6</button>
+        <button onclick="calc('-');">-</button>
     </div>
 
     <div class="row">
-        <button onclick="calc(7); ";>7</button>
-        <button onclick="calc(8); ";>8</button>
-        <button onclick="calc(9); ";>9</button>
-        <button onclick="calc('*'); ";>*</button>
+        <button onclick="calc(7);">7</button>
+        <button onclick="calc(8);">8</button>
+        <button onclick="calc(9);">9</button>
+        <button onclick="calc('*');">*</button>
     </div>
 
     <div class="row">
-        <button onclick="calc(0) ";>0</button>
-        <button onclick="calc('.') ";>.</button>
-        <button onclick="calculation = eval(calculation); document.querySelector('.js-calculation').innerHTML = `${calculation}`; console.log(`result: ${calculation}`); calculation=''; ";>=</button>
-        <button onclick="calc('/'); ";>/</button>
+        <button onclick="calc(0);">0</button>
+        <button onclick="calc('.');">.</button>
+        <button onclick="calculation = eval(calculation); document.querySelector('.js-calculation').innerHTML = `${calculation}`; console.log(`result: ${calculation}`);">=</button>
+        <button onclick="calc('/');">/</button>
     </div>
+    <button style="padding: 10px;" onclick="calculation=''; localStorage.setItem('calculation',calculation);document.querySelector('.js-calculation').innerHTML = `${calculation}`;">clear memory</button>
 
     <script>
         let calculation = localStorage.getItem('calculation')||'';
+        document.querySelector('.js-calculation').innerHTML = `${calculation}`;
         function calc(value)
         {
             calculation += value;
